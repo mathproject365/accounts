@@ -1,6 +1,19 @@
 let accounts = [];
 let currentUser = null;
 
+// Load accounts from local storage on page load
+window.onload = function() {
+    const storedAccounts = localStorage.getItem('accounts');
+    if (storedAccounts) {
+        accounts = JSON.parse(storedAccounts);
+        displayAccounts();
+    }
+};
+
+function saveAccounts() {
+    localStorage.setItem('accounts', JSON.stringify(accounts));
+}
+
 function register() {
     const username = document.getElementById('reg-username').value;
     const password = document.getElementById('reg-password').value;
@@ -21,6 +34,10 @@ function register() {
     const newAccount = { username, password, messages: [] };
     accounts.push(newAccount);
 
+    // Update accounts list
+    displayAccounts();
+    saveAccounts();
+
     // If current user is the newly registered user, update UI
     if (currentUser && currentUser.username === username) {
         displayCurrentUser(newAccount);
@@ -29,9 +46,6 @@ function register() {
     // Clear the form
     document.getElementById('reg-username').value = '';
     document.getElementById('reg-password').value = '';
-
-    // Refresh the accounts list
-    displayAccounts();
 }
 
 function signIn() {
@@ -106,6 +120,7 @@ function sendMessage(recipientUsername) {
         displayCurrentUser(recipientAccount);
     }
 
+    saveAccounts();
     alert('Message sent.');
 }
 
