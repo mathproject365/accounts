@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Account System</h1>
+        <div id="registration-form">
+            <input type="text" id="reg-username" placeholder="Username">
+            <input type="password" id="reg-password" placeholder="Password">
+            <button onclick="register()">Register</button>
+        </div>
+        <div id="signin-form">
+            <input type="text" id="sign-username" placeholder="Username">
+            <input type="password" id="sign-password" placeholder="Password">
+            <button onclick="signIn()">Sign In</button>
+        </div>
+        <div id="account-list">
+            <h2>Accounts</h2>
+            <ul id="accounts"></ul>
+        </div>
+        <div id="message-form">
+            <input type="text" id="recipient" placeholder="Recipient">
+            <textarea id="message" placeholder="Message"></textarea>
+            <button onclick="sendMessage()">Send Message</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
